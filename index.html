@@ -37,7 +37,7 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     --mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
     --display: "Instrument Serif", "Noto Serif TC", serif;
 
-    --pad-x: clamp(24px, 6vw, 96px);
+    --pad-x: clamp(28px, 6vw, 96px);
     --section-y: clamp(80px, 12vw, 160px);
   }
 
@@ -217,6 +217,9 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     position: sticky;
     top: 100px;
   }
+  @media (max-width: 960px) {
+    .monitor-wall { position: static !important; transform: none !important; }
+  }
   .monitor-wall .bezel-top {
     display: flex; justify-content: space-between; align-items: center;
     font-family: var(--mono); font-size: 9px;
@@ -375,7 +378,10 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     gap: clamp(32px, 6vw, 96px);
     align-items: start;
   }
-  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-card { position: static !important; transform: none !important; }
+  }
 
   .about-card {
     border: 1px solid var(--line);
@@ -1112,7 +1118,17 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     .proj-card { grid-template-columns: 1fr; gap: 24px; }
     .proj-card:nth-child(even) .pc-screen { order: 0; }
     .proj-card:nth-child(even) .pc-info { order: 0; }
-    .pc-screen { aspect-ratio: 16 / 9; }
+    .pc-screen {
+      aspect-ratio: auto;
+      padding: 44px 12px 36px;
+      min-height: 0;
+    }
+    .pc-screen img {
+      max-height: 320px;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+    }
   }
 
   /* ========== SKILLS — 5 col variant ========== */
