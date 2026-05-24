@@ -78,7 +78,8 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     font-size: 11px;
     letter-spacing: .08em;
   }
-  nav.top .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
+  nav.top .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; white-space: nowrap; flex-shrink: 0; min-width: 0; }
+  nav.top .brand > * { flex-shrink: 0; }
   nav.top .brand .dot {
     width: 7px; height: 7px; border-radius: 50%;
     background: var(--tally-red);
@@ -97,9 +98,9 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
   }
   nav.top ul a:hover { color: var(--ink); }
   nav.top ul a .num { color: var(--ink-4); font-size: 9px; }
-  nav.top .time { color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  nav.top .time { color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; flex-shrink: 0; margin-left: 20px; }
 
-  @media (max-width: 760px) {
+  @media (max-width: 1024px) {
     nav.top ul { display: none; }
   }
 
@@ -119,7 +120,7 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     align-items: end;
     padding-bottom: 24px;
     border-bottom: 1px solid var(--line);
-    gap: 24px;
+    gap: 16px 24px;
   }
   .hero-head .meta {
     font-family: var(--mono);
@@ -127,12 +128,19 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     color: var(--ink-4);
     letter-spacing: .18em;
     text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    min-width: 0;
   }
-  .hero-head .meta span { color: var(--ink-2); }
+  .hero-head .meta > span { color: var(--ink-2); white-space: nowrap; }
+  .hero-head .meta .sep { color: var(--ink-4); }
   .hero-head .meta .live {
     display: inline-flex; align-items: center; gap: 6px;
     color: var(--tally-red);
     font-weight: 500;
+    white-space: nowrap;
   }
   .hero-head .meta .live::before {
     content: ""; width: 6px; height: 6px; border-radius: 50%;
@@ -145,8 +153,14 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     color: var(--ink-3);
     letter-spacing: .18em;
     text-align: right;
+    white-space: nowrap;
   }
   .hero-head .channel strong { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 640px) {
+    .hero-head { grid-template-columns: 1fr; align-items: start; }
+    .hero-head .channel { text-align: left; white-space: normal; }
+  }
 
   .hero-main {
     display: grid;
@@ -751,10 +765,17 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     padding: 24px var(--pad-x);
     border-top: 1px solid var(--line);
     display: flex; justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    align-items: center;
     font-family: var(--mono);
     font-size: 10px;
     color: var(--ink-4);
     letter-spacing: .15em;
+  }
+  footer > * { flex-shrink: 0; }
+  @media (max-width: 560px) {
+    footer { flex-direction: column; align-items: flex-start; gap: 10px; }
   }
   footer .bars { display: flex; gap: 4px; }
   footer .bars span {
@@ -1371,7 +1392,7 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
     }
     .section-rail .item.active .rail-dot { width: 28px; }
 
-    @media (max-width: 900px) { .section-rail { display: none; } }
+    @media (max-width: 1200px) { .section-rail { display: none; } }
 
     /* Reveal primitives */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
@@ -1637,10 +1658,10 @@ const TWEAKS = /*EDITMODE-BEGIN*/{
   <div class="hero-head">
     <div class="meta">
       <span class="live">ON&nbsp;AIR</span>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <span>CH.07</span> — PERSONAL BROADCAST
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      Taipei, TW
+      <span class="sep">|</span>
+      <span>CH.07 — Personal Broadcast</span>
+      <span class="sep">|</span>
+      <span>Taipei, TW</span>
     </div>
     <div class="channel">
       <strong>HSU EN-CHI</strong><br>
